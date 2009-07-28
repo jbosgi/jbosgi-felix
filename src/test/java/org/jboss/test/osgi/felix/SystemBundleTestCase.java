@@ -26,9 +26,6 @@ package org.jboss.test.osgi.felix;
 import static org.junit.Assert.assertEquals;
 
 import org.jboss.osgi.felix.FelixIntegration;
-import org.jboss.osgi.spi.framework.OSGiBootstrap;
-import org.jboss.osgi.spi.framework.OSGiBootstrapProvider;
-import org.jboss.osgi.spi.framework.OSGiFramework;
 import org.jboss.osgi.spi.testing.OSGiTest;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
@@ -48,17 +45,6 @@ public class SystemBundleTestCase extends OSGiTest
       framework.create();
       framework.start();
 
-      Bundle bundle = framework.getBundle();
-
-      assertEquals("BundleId == 0", 0, bundle.getBundleId());
-      assertEquals("SymbolicName", "org.apache.felix.framework", bundle.getSymbolicName());
-   }
-
-   @Test
-   public void testSystemBundle()
-   {
-      OSGiBootstrapProvider configProvider = OSGiBootstrap.getBootstrapProvider();
-      OSGiFramework framework = configProvider.getFramework();
       Bundle bundle = framework.getBundle();
 
       assertEquals("BundleId == 0", 0, bundle.getBundleId());
