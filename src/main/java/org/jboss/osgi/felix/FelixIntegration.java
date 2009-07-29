@@ -29,14 +29,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.felix.framework.Felix;
 import org.jboss.logging.Logger;
 import org.jboss.osgi.spi.FrameworkException;
-import org.jboss.osgi.spi.framework.OSGiFramework;
 import org.jboss.osgi.spi.logging.ExportedPackageHelper;
+import org.jboss.osgi.spi.util.ServiceLoader;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
+import org.osgi.framework.launch.Framework;
+import org.osgi.framework.launch.FrameworkFactory;
 
 /**
  * An abstraction of an OSGi Framework
@@ -44,7 +45,7 @@ import org.osgi.framework.BundleException;
  * @author thomas.diesler@jboss.com
  * @since 23-Jan-2009
  */
-public class FelixIntegration implements OSGiFramework
+public class FelixIntegration
 {
    // Provide logging
    final Logger log = Logger.getLogger(FelixIntegration.class);
@@ -53,7 +54,7 @@ public class FelixIntegration implements OSGiFramework
    private List<URL> autoInstall = new ArrayList<URL>();
    private List<URL> autoStart = new ArrayList<URL>();
 
-   private Felix framework;
+   private Framework framework;
 
    public Map<String, Object> getProperties()
    {
@@ -108,8 +109,9 @@ public class FelixIntegration implements OSGiFramework
       // An instance of Logger that the framework uses as its default logger
       properties.put("felix.log.logger", new FelixLogger());
 
-      // Init the System Bundle
-      framework = new Felix(properties);
+      // Load the framework instance
+      FrameworkFactory factory = ServiceLoader.loadService(FrameworkFactory.class);
+      framework = factory.newFramework(properties);
    }
 
    public void start()
