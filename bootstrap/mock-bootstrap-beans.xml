@@ -1,0 +1,8 @@
+<!--
+  $Id: mock-bootstrap-beans.xml 84917 2009-03-02 08:18:40Z thomas.diesler@jboss.com $ 
+-->
+<deployment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:jboss:bean-deployer:2.0 bean-deployer_2_0.xsd" xmlns="urn:jboss:bean-deployer:2.0">
+
+ <bean name="SomeBean" class="org.jboss.test.osgi.bootstrap.SomeBean"/>
+
+</deployment>
