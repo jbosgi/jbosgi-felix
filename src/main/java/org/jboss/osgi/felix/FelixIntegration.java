@@ -42,8 +42,9 @@ public class FelixIntegration extends FrameworkIntegration
    
    public void create()
    {
-      String implVersion = getClass().getPackage().getImplementationVersion();
-      log.info("OSGi Integration Felix - " + implVersion);
+      // Log INFO about this implementation
+      log.info(getClass().getPackage().getImplementationTitle());
+      log.info(getClass().getPackage().getImplementationVersion());
 
       // When a Felix instance is embedded in a host application,
       // the host application must inform the Felix instance that it is embedded
