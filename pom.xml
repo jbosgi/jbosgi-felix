@@ -20,7 +20,7 @@
   <artifactId>jboss-osgi-runtime-felix</artifactId>
   <packaging>jar</packaging>
 
-  <version>2.0.0</version>
+  <version>2.0.1-SNAPSHOT</version>
 
   <!-- Parent -->
   <parent>
@@ -50,9 +50,9 @@
 
   <!-- Subversion -->
   <scm>
-    <connection>scm:svn:http://anonsvn.jboss.org/repos/jbossas/projects/jboss-osgi/projects/runtime/felix/tags/jboss-osgi-runtime-felix-2.0.0</connection>
-    <developerConnection>scm:svn:https://svn.jboss.org/repos/jbossas/projects/jboss-osgi/projects/runtime/felix/tags/jboss-osgi-runtime-felix-2.0.0</developerConnection>
-    <url>http://fisheye.jboss.com/qsearch/JBossOSGi/projects/runtime/felix/tags/jboss-osgi-runtime-felix-2.0.0</url>
+    <connection>scm:svn:http://anonsvn.jboss.org/repos/jbossas/projects/jboss-osgi/projects/runtime/felix/trunk</connection>
+    <developerConnection>scm:svn:https://svn.jboss.org/repos/jbossas/projects/jboss-osgi/projects/runtime/felix/trunk</developerConnection>
+    <url>http://fisheye.jboss.com/qsearch/JBossOSGi/projects/runtime/felix/trunk</url>
   </scm>
 
 </project>
