@@ -19,31 +19,46 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.jboss.osgi.felix;
+package org.jboss.test.osgi.felix;
 
 //$Id$
 
-import org.jboss.osgi.spi.framework.PropertiesBootstrapProvider;
+import static org.junit.Assert.assertEquals;
+
+import org.jboss.osgi.felix.FelixBundleContextWrapper;
+import org.jboss.osgi.spi.framework.OSGiBootstrap;
+import org.jboss.osgi.spi.framework.OSGiBootstrapProvider;
+import org.junit.Test;
+import org.osgi.framework.BundleContext;
 import org.osgi.framework.launch.Framework;
 
 /**
- * A bootstrap provider for Felix.
+ * Test OSGi System bundle access
  * 
  * @author thomas.diesler@jboss.com
- * @since 23-Aug-2009
+ * @since 27-Jul-2009
  */
-public class FelixBootstrapProvider extends PropertiesBootstrapProvider
+public class OSGiBootstrapTestCase 
 {
-   private Framework frameworkWrapper;
-   
-   @Override
-   public Framework getFramework()
+   @Test
+   public void testFrameworkLaunch() throws Exception
    {
-      if (frameworkWrapper == null)
+      OSGiBootstrapProvider bootProvider = OSGiBootstrap.getBootstrapProvider();
+      Framework framework = bootProvider.getFramework();
+      
+      assertEquals("BundleId == 0", 0, framework.getBundleId());
+      assertEquals("SymbolicName", "org.apache.felix.framework", framework.getSymbolicName());
+      
+      framework.start();
+      try
       {
-         Framework framework = super.getFramework();
-         frameworkWrapper = new FelixFrameworkWrapper(framework);
+         BundleContext context = framework.getBundleContext();
+         assertEquals(FelixBundleContextWrapper.class.getName(), context.getClass().getName());
       }
-      return frameworkWrapper;
+      finally
+      {
+         framework.stop();
+         framework.waitForStop(1000);
+      }
    }
 }

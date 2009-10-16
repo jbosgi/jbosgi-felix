@@ -23,10 +23,13 @@ package org.jboss.osgi.felix;
 
 //$Id$
 
+import java.util.Map;
+
 import org.jboss.logging.Logger;
 import org.jboss.osgi.spi.framework.FrameworkIntegration;
 import org.jboss.osgi.spi.util.ServiceLoader;
 import org.osgi.framework.BundleException;
+import org.osgi.framework.launch.Framework;
 import org.osgi.framework.launch.FrameworkFactory;
 
 /**
@@ -40,7 +43,10 @@ public class FelixIntegration extends FrameworkIntegration
    // Provide logging
    final Logger log = Logger.getLogger(FelixIntegration.class);
    
-   public void create()
+   private Framework framework;
+   
+   @Override
+   protected void createFramework(Map<String, Object> properties)
    {
       // Log INFO about this implementation
       log.info(getClass().getPackage().getImplementationTitle());
@@ -56,6 +62,13 @@ public class FelixIntegration extends FrameworkIntegration
       // Load the framework instance
       FrameworkFactory factory = ServiceLoader.loadService(FrameworkFactory.class);
       framework = factory.newFramework(properties);
+   }
+
+   @Override
+   protected Framework getFramework()
+   {
+      // TODO Auto-generated method stub
+      return null;
    }
 
    public void stop()

@@ -23,27 +23,31 @@ package org.jboss.osgi.felix;
 
 //$Id$
 
-import org.jboss.osgi.spi.framework.PropertiesBootstrapProvider;
+import org.jboss.logging.Logger;
+import org.jboss.osgi.spi.framework.FrameworkWrapper;
+import org.osgi.framework.BundleContext;
 import org.osgi.framework.launch.Framework;
 
 /**
- * A bootstrap provider for Felix.
+ * The FelixFrameworkWrapper wrapps the Framework provided by the Felix implemenation.
  * 
  * @author thomas.diesler@jboss.com
- * @since 23-Aug-2009
+ * @since 15-Oct-2009
  */
-public class FelixBootstrapProvider extends PropertiesBootstrapProvider
+class FelixFrameworkWrapper extends FrameworkWrapper
 {
-   private Framework frameworkWrapper;
+   // Provide logging
+   final Logger log = Logger.getLogger(FelixFrameworkWrapper.class);
    
-   @Override
-   public Framework getFramework()
+   FelixFrameworkWrapper(Framework framework)
    {
-      if (frameworkWrapper == null)
-      {
-         Framework framework = super.getFramework();
-         frameworkWrapper = new FelixFrameworkWrapper(framework);
-      }
-      return frameworkWrapper;
+      super(framework);
+   }
+
+   @Override
+   public BundleContext getBundleContext()
+   {
+      BundleContext context = framework.getBundleContext();
+      return new FelixBundleContextWrapper(context);
    }
 }
