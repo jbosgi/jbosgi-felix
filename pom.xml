@@ -26,7 +26,7 @@
   <parent>
     <groupId>org.jboss.osgi</groupId>
     <artifactId>jboss-osgi-parent</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4-SNAPSHOT</version>
   </parent>
 
   <!-- Subversion -->
@@ -60,8 +60,8 @@
       <version>${version.felix.framework}</version>
     </dependency>
     <dependency>
-      <groupId>org.jboss.logging</groupId>
-      <artifactId>jboss-logging-log4j</artifactId>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>

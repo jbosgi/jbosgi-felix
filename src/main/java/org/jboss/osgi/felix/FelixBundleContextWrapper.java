@@ -26,10 +26,9 @@ package org.jboss.osgi.felix;
 import java.net.URL;
 
 import org.jboss.logging.Logger;
-import org.jboss.osgi.deployment.BundleDeployment;
-import org.jboss.osgi.deployment.BundleDeploymentFactory;
-import org.jboss.osgi.deployment.DeployerService;
+import org.jboss.osgi.deployment.DeploymentService;
 import org.jboss.osgi.spi.framework.BundleContextWrapper;
+import org.jboss.osgi.spi.util.BundleInfo;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
@@ -57,17 +56,17 @@ public class FelixBundleContextWrapper extends BundleContextWrapper
    @Override
    public Bundle installBundle(String location) throws BundleException
    {
-      BundleDeployment dep = BundleDeploymentFactory.createBundleDeployment(location);
-      URL bundleURL = dep.getLocation();
-      String symbolicName = dep.getSymbolicName();
-      Version version = Version.parseVersion(dep.getVersion());
+      BundleInfo info = BundleInfo.createBundleInfo(location);
+      URL bundleURL = info.getLocation();
+      String symbolicName = info.getSymbolicName();
+      Version version = Version.parseVersion(info.getVersion());
       
       Bundle bundle;
       
-      ServiceReference sref = context.getServiceReference(DeployerService.class.getName());
+      ServiceReference sref = context.getServiceReference(DeploymentService.class.getName());
       if (sref != null)
       {
-         DeployerService service = (DeployerService)context.getService(sref);
+         DeploymentService service = (DeploymentService)context.getService(sref);
          service.deploy(bundleURL);
          bundle = getBundle(symbolicName, version, true);
       }
