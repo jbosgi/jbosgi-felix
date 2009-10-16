@@ -38,11 +38,17 @@
 
   <properties>
     <version.felix.framework>2.0.0</version.felix.framework>
+    <version.jboss.osgi.deployment>1.0.0-SNAPSHOT</version.jboss.osgi.deployment>
     <version.jboss.osgi.spi>1.0.3-SNAPSHOT</version.jboss.osgi.spi>
   </properties>
 
   <!-- Dependencies -->
   <dependencies>
+    <dependency>
+      <groupId>org.jboss.osgi.bundles</groupId>
+      <artifactId>jboss-osgi-deployment</artifactId>
+      <version>${version.jboss.osgi.deployment}</version>
+    </dependency>
     <dependency>
       <groupId>org.jboss.osgi</groupId>
       <artifactId>jboss-osgi-spi</artifactId>
