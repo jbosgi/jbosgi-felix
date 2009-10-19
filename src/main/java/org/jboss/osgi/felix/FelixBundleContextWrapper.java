@@ -26,7 +26,7 @@ package org.jboss.osgi.felix;
 import java.net.URL;
 
 import org.jboss.logging.Logger;
-import org.jboss.osgi.deployment.DeploymentService;
+import org.jboss.osgi.deployment.DeployerService;
 import org.jboss.osgi.spi.framework.BundleContextWrapper;
 import org.jboss.osgi.spi.util.BundleInfo;
 import org.osgi.framework.Bundle;
@@ -63,10 +63,10 @@ public class FelixBundleContextWrapper extends BundleContextWrapper
       
       Bundle bundle;
       
-      ServiceReference sref = context.getServiceReference(DeploymentService.class.getName());
+      ServiceReference sref = context.getServiceReference(DeployerService.class.getName());
       if (sref != null)
       {
-         DeploymentService service = (DeploymentService)context.getService(sref);
+         DeployerService service = (DeployerService)context.getService(sref);
          service.deploy(bundleURL);
          bundle = getBundle(symbolicName, version, true);
       }
