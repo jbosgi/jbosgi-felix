@@ -26,7 +26,7 @@ package org.jboss.osgi.felix;
 import java.net.URL;
 
 import org.jboss.logging.Logger;
-import org.jboss.osgi.deployment.DeployerService;
+import org.jboss.osgi.deployment.deployer.DeployerService;
 import org.jboss.osgi.spi.framework.BundleContextWrapper;
 import org.jboss.osgi.spi.util.BundleInfo;
 import org.osgi.framework.Bundle;
