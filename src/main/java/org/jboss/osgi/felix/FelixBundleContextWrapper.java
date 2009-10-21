@@ -26,7 +26,6 @@ package org.jboss.osgi.felix;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.jboss.logging.Logger;
 import org.jboss.osgi.deployment.deployer.DeployerService;
 import org.jboss.osgi.spi.framework.BundleContextWrapper;
 import org.jboss.osgi.spi.util.BundleInfo;
@@ -35,6 +34,8 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.ServiceReference;
 import org.osgi.framework.Version;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The FelixBundleContextWrapper wrapps the BundleContext provided by the Felix implemenation.
@@ -47,7 +48,7 @@ import org.osgi.framework.Version;
 public class FelixBundleContextWrapper extends BundleContextWrapper
 {
    // Provide logging
-   final Logger log = Logger.getLogger(FelixBundleContextWrapper.class);
+   final Logger log = LoggerFactory.getLogger(FelixBundleContextWrapper.class);
    
    public FelixBundleContextWrapper(BundleContext context)
    {

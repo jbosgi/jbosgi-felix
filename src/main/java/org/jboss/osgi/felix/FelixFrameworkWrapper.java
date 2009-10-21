@@ -23,13 +23,14 @@ package org.jboss.osgi.felix;
 
 //$Id$
 
-import org.jboss.logging.Logger;
 import org.jboss.osgi.deployment.internal.DeploymentServicesActivator;
 import org.jboss.osgi.spi.framework.FrameworkWrapper;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.launch.Framework;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The FelixFrameworkWrapper wrapps the Framework provided by the Felix implemenation.
@@ -40,7 +41,7 @@ import org.osgi.framework.launch.Framework;
 class FelixFrameworkWrapper extends FrameworkWrapper
 {
    // Provide logging
-   final Logger log = Logger.getLogger(FelixFrameworkWrapper.class);
+   final Logger log = LoggerFactory.getLogger(FelixFrameworkWrapper.class);
    
    private BundleActivator deploymentServices;
    
