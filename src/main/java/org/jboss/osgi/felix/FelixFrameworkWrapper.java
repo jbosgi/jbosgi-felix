@@ -24,8 +24,11 @@ package org.jboss.osgi.felix;
 //$Id$
 
 import org.jboss.logging.Logger;
+import org.jboss.osgi.deployment.internal.DeploymentServicesActivator;
 import org.jboss.osgi.spi.framework.FrameworkWrapper;
+import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.BundleException;
 import org.osgi.framework.launch.Framework;
 
 /**
@@ -39,9 +42,64 @@ class FelixFrameworkWrapper extends FrameworkWrapper
    // Provide logging
    final Logger log = Logger.getLogger(FelixFrameworkWrapper.class);
    
+   private BundleActivator deploymentServices;
+   
    FelixFrameworkWrapper(Framework framework)
    {
       super(framework);
+   }
+
+   @Override
+   public void start() throws BundleException
+   {
+      super.start();
+      
+      // Start the deployment services
+      try
+      {
+         BundleContext context = framework.getBundleContext();
+         deploymentServices = new DeploymentServicesActivator();
+         deploymentServices.start(context);
+      }
+      catch (RuntimeException rte)
+      {
+         throw rte;
+      }
+      catch (BundleException ex)
+      {
+         throw ex;
+      }
+      catch (Exception ex)
+      {
+         throw new BundleException("Cannot start deployment services", ex); 
+      }
+   }
+
+   @Override
+   public void stop() throws BundleException
+   {
+      // Stop the deployment services
+      if (deploymentServices != null)
+      {
+         try
+         {
+            BundleContext context = framework.getBundleContext();
+            deploymentServices.stop(context);
+         }
+         catch (RuntimeException rte)
+         {
+            throw rte;
+         }
+         catch (BundleException ex)
+         {
+            throw ex;
+         }
+         catch (Exception ex)
+         {
+            throw new BundleException("Cannot start deployment services", ex); 
+         }
+      }
+      super.stop();
    }
 
    @Override
