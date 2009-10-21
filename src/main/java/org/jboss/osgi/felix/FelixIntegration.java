@@ -43,14 +43,13 @@ public class FelixIntegration extends FrameworkIntegration
    // Provide logging
    final Logger log = Logger.getLogger(FelixIntegration.class);
    
-   private Framework framework;
-   
    @Override
-   protected void createFramework(Map<String, Object> properties)
+   protected Framework createFramework(Map<String, Object> properties)
    {
       // Log INFO about this implementation
-      log.info(getClass().getPackage().getImplementationTitle());
-      log.info(getClass().getPackage().getImplementationVersion());
+      String implTitle = getClass().getPackage().getImplementationTitle();
+      String impVersion = getClass().getPackage().getImplementationVersion();
+      log.info(implTitle + " - " + impVersion);
 
       // When a Felix instance is embedded in a host application,
       // the host application must inform the Felix instance that it is embedded
@@ -61,18 +60,12 @@ public class FelixIntegration extends FrameworkIntegration
 
       // Load the framework instance
       FrameworkFactory factory = ServiceLoader.loadService(FrameworkFactory.class);
-      framework = factory.newFramework(properties);
-   }
-
-   @Override
-   protected Framework getFramework()
-   {
-      // TODO Auto-generated method stub
-      return null;
+      return factory.newFramework(properties);
    }
 
    public void stop()
    {
+      final Framework framework = getFramework();
       if (framework != null)
       {
          // Running the Felix shutdown in a separate thread that gets 
@@ -88,7 +81,6 @@ public class FelixIntegration extends FrameworkIntegration
                {
                   framework.stop();
                   framework.waitForStop(5000);
-                  framework = null;
                   log.debug("SystemBundle STOPPED");
                }
                catch (BundleException ex)
