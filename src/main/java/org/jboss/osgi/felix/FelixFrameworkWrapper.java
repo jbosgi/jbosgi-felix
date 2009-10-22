@@ -26,8 +26,6 @@ package org.jboss.osgi.felix;
 import org.jboss.osgi.spi.framework.FrameworkWrapper;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.launch.Framework;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Wraps the Framework provided by the Felix implementation.
@@ -37,9 +35,6 @@ import org.slf4j.LoggerFactory;
  */
 class FelixFrameworkWrapper extends FrameworkWrapper
 {
-   // Provide logging
-   final Logger log = LoggerFactory.getLogger(FelixFrameworkWrapper.class);
-
    FelixFrameworkWrapper(Framework framework)
    {
       super(framework);

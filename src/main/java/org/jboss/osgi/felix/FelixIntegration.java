@@ -25,8 +25,10 @@ package org.jboss.osgi.felix;
 
 import java.util.Map;
 
-import org.jboss.osgi.spi.framework.FrameworkIntegration;
+import org.jboss.osgi.deployment.DeploymentActivator;
+import org.jboss.osgi.spi.framework.FrameworkIntegrationBean;
 import org.jboss.osgi.spi.util.ServiceLoader;
+import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.launch.Framework;
 import org.osgi.framework.launch.FrameworkFactory;
@@ -39,10 +41,12 @@ import org.slf4j.LoggerFactory;
  * @author thomas.diesler@jboss.com
  * @since 23-Jan-2009
  */
-public class FelixIntegration extends FrameworkIntegration
+public class FelixIntegration extends FrameworkIntegrationBean
 {
    // Provide logging
    final Logger log = LoggerFactory.getLogger(FelixIntegration.class);
+   
+   private DeploymentActivator deploymentActivator;
    
    @Override
    protected Framework createFramework(Map<String, Object> properties)
@@ -64,11 +68,28 @@ public class FelixIntegration extends FrameworkIntegration
       return factory.newFramework(properties);
    }
 
+   @Override
+   protected void registerSystemServices(BundleContext context)
+   {
+      deploymentActivator = new DeploymentActivator();
+      deploymentActivator.start(context);
+   }
+
+   @Override
+   protected void unregisterSystemServices(BundleContext context)
+   {
+      if (deploymentActivator != null)
+         deploymentActivator.stop(context);
+   }
+   
    public void stop()
    {
       final Framework framework = getFramework();
       if (framework != null)
       {
+         // Unregister system services
+         unregisterSystemServices(getBundleContext());
+         
          // Running the Felix shutdown in a separate thread that gets 
          // interrupted after a 10sec timeout. This is a workaround for
          //

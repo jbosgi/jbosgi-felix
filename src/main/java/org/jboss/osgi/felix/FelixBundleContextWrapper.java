@@ -38,7 +38,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The FelixBundleContextWrapper wrapps the BundleContext provided by the Felix implemenation.
+ * Wraps the BundleContext provided by the Felix implementation.
  * 
  * It provides additional functionality on bundle install.
  * 
