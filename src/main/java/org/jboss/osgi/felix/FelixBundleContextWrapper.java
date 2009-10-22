@@ -23,17 +23,8 @@ package org.jboss.osgi.felix;
 
 //$Id$
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import org.jboss.osgi.deployment.deployer.DeployerService;
 import org.jboss.osgi.spi.framework.BundleContextWrapper;
-import org.jboss.osgi.spi.util.BundleInfo;
-import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.BundleException;
-import org.osgi.framework.ServiceReference;
-import org.osgi.framework.Version;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,64 +40,9 @@ public class FelixBundleContextWrapper extends BundleContextWrapper
 {
    // Provide logging
    final Logger log = LoggerFactory.getLogger(FelixBundleContextWrapper.class);
-   
+
    public FelixBundleContextWrapper(BundleContext context)
    {
       super(context);
-   }
-
-   @Override
-   public Bundle installBundle(String location) throws BundleException
-   {
-      URL url;
-      try
-      {
-         url = new URL(location);
-      }
-      catch (MalformedURLException ex)
-      {
-         throw new IllegalArgumentException("Invalid bundle location: " + location);
-      }
-      
-      BundleInfo info = BundleInfo.createBundleInfo(url);
-      String symbolicName = info.getSymbolicName();
-      Version version = Version.parseVersion(info.getVersion());
-      
-      Bundle bundle;
-      
-      ServiceReference sref = context.getServiceReference(DeployerService.class.getName());
-      if (sref != null)
-      {
-         DeployerService service = (DeployerService)context.getService(sref);
-         service.deploy(url);
-         bundle = getBundle(symbolicName, version, true);
-      }
-      else
-      {
-         bundle = context.installBundle(location);
-      }
-      
-      return bundle;
-   }
-
-   private Bundle getBundle(String symbolicName, Version version, boolean mustExist)
-   {
-      Bundle bundle = null;
-      for (Bundle aux : getBundles())
-      {
-         if (aux.getSymbolicName().equals(symbolicName))
-         {
-            if (version == null || version.equals(aux.getVersion()))
-            {
-               bundle = aux;
-               break;
-            }
-         }
-      }
-      
-      if (bundle == null && mustExist == true)
-         throw new IllegalStateException("Cannot obtain bundle: " + symbolicName + "-" + version);
-      
-      return bundle;
    }
 }
