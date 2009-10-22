@@ -27,7 +27,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.jboss.osgi.deployment.deployer.DeployerService;
-import org.jboss.osgi.felix.FelixBundleContextWrapper;
 import org.jboss.osgi.spi.framework.OSGiBootstrap;
 import org.jboss.osgi.spi.framework.OSGiBootstrapProvider;
 import org.junit.Test;
@@ -56,8 +55,6 @@ public class OSGiBootstrapTestCase
       try
       {
          BundleContext context = framework.getBundleContext();
-         assertEquals(FelixBundleContextWrapper.class.getName(), context.getClass().getName());
-         
          ServiceReference sref = context.getServiceReference(DeployerService.class.getName());
          assertNotNull("DeployerService not null", sref);
       }

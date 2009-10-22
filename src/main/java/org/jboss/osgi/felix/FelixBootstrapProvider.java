@@ -23,8 +23,9 @@ package org.jboss.osgi.felix;
 
 //$Id$
 
+import org.jboss.osgi.deployment.DeploymentServices;
 import org.jboss.osgi.spi.framework.PropertiesBootstrapProvider;
-import org.osgi.framework.launch.Framework;
+import org.osgi.framework.BundleContext;
 
 /**
  * A bootstrap provider for Felix.
@@ -34,16 +35,19 @@ import org.osgi.framework.launch.Framework;
  */
 public class FelixBootstrapProvider extends PropertiesBootstrapProvider
 {
-   private Framework frameworkWrapper;
+   private DeploymentServices deploymentServices;
    
    @Override
-   public Framework getFramework()
+   protected void registerSystemServices(BundleContext context)
    {
-      if (frameworkWrapper == null)
-      {
-         Framework framework = super.getFramework();
-         frameworkWrapper = new FelixFrameworkWrapper(framework);
-      }
-      return frameworkWrapper;
+      deploymentServices = new DeploymentServices();
+      deploymentServices.start(context);
+   }
+
+   @Override
+   protected void unregisterSystemServices(BundleContext context)
+   {
+      if (deploymentServices != null)
+         deploymentServices.stop(context);
    }
 }

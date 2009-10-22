@@ -54,6 +54,7 @@
       <artifactId>jboss-osgi-deployment</artifactId>
       <version>${version.jboss.osgi.deployment}</version>
     </dependency>
+    
     <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.framework</artifactId>
