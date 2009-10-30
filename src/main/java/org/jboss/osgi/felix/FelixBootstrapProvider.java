@@ -23,12 +23,14 @@ package org.jboss.osgi.felix;
 
 //$Id$
 
-import java.net.URL;
+import java.util.Map;
 
 import org.jboss.osgi.deployment.DeploymentActivator;
 import org.jboss.osgi.spi.framework.PropertiesBootstrapProvider;
+import org.jboss.osgi.spi.util.ServiceLoader;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.launch.Framework;
+import org.osgi.framework.launch.FrameworkFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,21 +48,24 @@ public class FelixBootstrapProvider extends PropertiesBootstrapProvider
    private DeploymentActivator deploymentActivator;
    
    @Override
-   public void configure(URL urlConfig)
+   protected Framework createFramework(Map<String, Object> properties)
    {
-      super.configure(urlConfig);
-      
       // Log INFO about this implementation
       String implTitle = getClass().getPackage().getImplementationTitle();
       String impVersion = getClass().getPackage().getImplementationVersion();
       log.info(implTitle + " - " + impVersion);
-   }
+      
+      // When a Felix instance is embedded in a host application,
+      // the host application must inform the Felix instance that it is embedded
+      properties.put("felix.embedded.execution", "true");
 
-   @Override
-   public Framework getFramework()
-   {
-      Framework framework = super.getFramework();
-      return new FelixFrameworkWrapper(framework);
+      // An instance of Logger that the framework uses as its default logger
+      properties.put("felix.log.logger", new FelixLogger());
+
+      // Load the framework instance
+      FrameworkFactory factory = ServiceLoader.loadService(FrameworkFactory.class);
+      Framework framework = factory.newFramework(properties);
+      return framework;
    }
    
    @Override

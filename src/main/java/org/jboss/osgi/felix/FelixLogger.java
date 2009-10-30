@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
  * An integration with the Felix Logger.
  * 
  * This Logger gets registered with the Felix framework and 
- * delegates framework log messages to the JBoss logger.
+ * delegates framework log messages to SLF4J.
  * 
  * @author thomas.diesler@jboss.com
  * @since 04-Mar-2009
