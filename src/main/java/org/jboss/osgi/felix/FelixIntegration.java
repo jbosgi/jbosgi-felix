@@ -25,7 +25,7 @@ package org.jboss.osgi.felix;
 
 import java.util.Map;
 
-import org.jboss.osgi.deployment.DeploymentActivator;
+import org.jboss.osgi.deployment.DeploymentServicesActivator;
 import org.jboss.osgi.spi.framework.FrameworkIntegrationBean;
 import org.jboss.osgi.spi.util.ServiceLoader;
 import org.osgi.framework.BundleContext;
@@ -46,7 +46,7 @@ public class FelixIntegration extends FrameworkIntegrationBean
    // Provide logging
    final Logger log = LoggerFactory.getLogger(FelixIntegration.class);
    
-   private DeploymentActivator deploymentActivator;
+   private DeploymentServicesActivator deploymentActivator;
    
    @Override
    protected Framework createFramework(Map<String, Object> properties)
@@ -71,7 +71,7 @@ public class FelixIntegration extends FrameworkIntegrationBean
    @Override
    protected void registerSystemServices(BundleContext context)
    {
-      deploymentActivator = new DeploymentActivator();
+      deploymentActivator = new DeploymentServicesActivator();
       deploymentActivator.start(context);
    }
 
