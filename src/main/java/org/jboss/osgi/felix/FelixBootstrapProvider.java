@@ -25,14 +25,13 @@ package org.jboss.osgi.felix;
 
 import java.util.Map;
 
+import org.jboss.logging.Logger;
 import org.jboss.osgi.deployment.DeploymentServicesActivator;
 import org.jboss.osgi.spi.framework.PropertiesBootstrapProvider;
 import org.jboss.osgi.spi.util.ServiceLoader;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.launch.Framework;
 import org.osgi.framework.launch.FrameworkFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * A bootstrap provider for Felix.
@@ -43,7 +42,7 @@ import org.slf4j.LoggerFactory;
 public class FelixBootstrapProvider extends PropertiesBootstrapProvider
 {
    // Provide logging
-   final Logger log = LoggerFactory.getLogger(FelixBootstrapProvider.class);
+   private static final Logger log = Logger.getLogger(FelixBootstrapProvider.class);
    
    private DeploymentServicesActivator deploymentActivator;
    

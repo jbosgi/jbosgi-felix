@@ -24,9 +24,8 @@ package org.jboss.osgi.felix;
 //$Id: FelixIntegration.java 84730 2009-02-25 12:57:23Z thomas.diesler@jboss.com $
 
 import org.apache.felix.moduleloader.ResourceNotFoundException;
+import org.jboss.logging.Logger;
 import org.osgi.framework.ServiceReference;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * An integration with the Felix Logger.
@@ -40,7 +39,7 @@ import org.slf4j.LoggerFactory;
 public class FelixLogger extends org.apache.felix.framework.Logger
 {
    // Provide logging
-   final Logger log = LoggerFactory.getLogger(FelixLogger.class);
+   private static final Logger log = Logger.getLogger(FelixLogger.class);
 
    public FelixLogger()
    {
