@@ -16,7 +16,7 @@
 
   <name>JBossOSGi Felix</name>
 
-  <groupId>org.jboss.osgi.runtime</groupId>
+  <groupId>org.jboss.osgi.felix</groupId>
   <artifactId>jboss-osgi-felix</artifactId>
   <packaging>jar</packaging>
 
