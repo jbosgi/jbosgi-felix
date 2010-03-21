@@ -20,7 +20,7 @@
   <artifactId>jboss-osgi-felix</artifactId>
   <packaging>jar</packaging>
 
-  <version>2.0.2.SP1-SNAPSHOT</version>
+  <version>2.0.4-SNAPSHOT</version>
 
   <!-- Parent -->
   <parent>
@@ -37,7 +37,7 @@
   </scm>
 
   <properties>
-    <version.felix.framework>2.0.2</version.felix.framework>
+    <version.felix.framework>2.0.4</version.felix.framework>
     <version.jboss.osgi.deployment>1.0.2-SNAPSHOT</version.jboss.osgi.deployment>
     <version.jboss.osgi.husky>1.0.4-SNAPSHOT</version.jboss.osgi.husky>
     <version.jboss.osgi.spi>1.0.5-SNAPSHOT</version.jboss.osgi.spi>
