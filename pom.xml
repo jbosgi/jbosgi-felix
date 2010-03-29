@@ -20,26 +20,26 @@
   <artifactId>jboss-osgi-felix</artifactId>
   <packaging>jar</packaging>
 
-  <version>2.0.4-SNAPSHOT</version>
+  <version>2.0.4</version>
 
   <!-- Parent -->
   <parent>
     <groupId>org.jboss.osgi</groupId>
     <artifactId>jboss-osgi-parent</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
   </parent>
 
   <!-- Subversion -->
   <scm>
-    <connection>scm:svn:http://anonsvn.jboss.org/repos/jbossas/projects/jboss-osgi/projects/runtime/felix/trunk</connection>
-    <developerConnection>scm:svn:https://svn.jboss.org/repos/jbossas/projects/jboss-osgi/projects/runtime/felix/trunk</developerConnection>
-    <url>http://fisheye.jboss.com/qsearch/JBossOSGi</url>
+    <connection>scm:svn:http://anonsvn.jboss.org/repos/jbossas/projects/jboss-osgi/projects/runtime/felix/tags/jboss-osgi-felix-2.0.4</connection>
+    <developerConnection>scm:svn:https://svn.jboss.org/repos/jbossas/projects/jboss-osgi/projects/runtime/felix/tags/jboss-osgi-felix-2.0.4</developerConnection>
+    <url>http://fisheye.jboss.com/qsearch/JBossOSGi/tags/jboss-osgi-felix-2.0.4</url>
   </scm>
 
   <properties>
     <version.felix.framework>2.0.4</version.felix.framework>
-    <version.jboss.osgi.deployment>1.0.2-SNAPSHOT</version.jboss.osgi.deployment>
-    <version.jboss.osgi.spi>1.0.5-SNAPSHOT</version.jboss.osgi.spi>
+    <version.jboss.osgi.deployment>1.0.2</version.jboss.osgi.deployment>
+    <version.jboss.osgi.spi>1.0.5</version.jboss.osgi.spi>
     <version.osgi>4.2.0</version.osgi>
   </properties>
 
@@ -80,12 +80,6 @@
       <groupId>org.osgi</groupId>
       <artifactId>org.osgi.compendium</artifactId>
       <version>${version.osgi}</version>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-log4j12</artifactId>
-      <scope>test</scope>
     </dependency>
   </dependencies>
 
