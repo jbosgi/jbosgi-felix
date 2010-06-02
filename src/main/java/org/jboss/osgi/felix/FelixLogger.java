@@ -23,7 +23,6 @@ package org.jboss.osgi.felix;
 
 //$Id: FelixIntegration.java 84730 2009-02-25 12:57:23Z thomas.diesler@jboss.com $
 
-import org.apache.felix.moduleloader.ResourceNotFoundException;
 import org.jboss.logging.Logger;
 import org.osgi.framework.ServiceReference;
 
@@ -57,13 +56,6 @@ public class FelixLogger extends org.apache.felix.framework.Logger
       
       if (level == LOG_DEBUG)
       {
-         // [FELIX-1124] ResourceNotFoundException too verbose
-         // https://issues.apache.org/jira/browse/FELIX-1124
-         if (throwable instanceof ResourceNotFoundException)
-         {  
-            msg = "ResourceNotFoundException: " + msg;
-            throwable = null;
-         }
          log.debug(msg, throwable);
       }
       else if (level == LOG_INFO)
