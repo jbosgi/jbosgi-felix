@@ -20,7 +20,7 @@
   <artifactId>jboss-osgi-felix</artifactId>
   <packaging>jar</packaging>
 
-  <version>3.0.1</version>
+  <version>3.0.2-SNAPSHOT</version>
 
   <!-- Parent -->
   <parent>
