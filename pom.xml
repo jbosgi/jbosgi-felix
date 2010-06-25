@@ -20,26 +20,26 @@
   <artifactId>jboss-osgi-felix</artifactId>
   <packaging>jar</packaging>
 
-  <version>2.1.0-SNAPSHOT</version>
+  <version>3.0.1-SNAPSHOT</version>
 
   <!-- Parent -->
   <parent>
     <groupId>org.jboss.osgi</groupId>
     <artifactId>jboss-osgi-parent</artifactId>
-    <version>1.0.5</version>
+    <version>1.0.6</version>
   </parent>
 
   <!-- Subversion -->
   <scm>
-    <connection>scm:git://github.com/jbosgi/jbosgi-felix.git</connection>
-    <developerConnection>scm:git@github.com:jbosgi/jbosgi-felix.git</developerConnection>
+    <connection>scm:git:git://github.com/jbosgi/jbosgi-felix.git</connection>
+    <developerConnection>scm:git:git@github.com:jbosgi/jbosgi-felix.git</developerConnection>
     <url>http://github.com/jbosgi/jbosgi-felix</url>
   </scm>
 
   <properties>
-    <version.felix.framework>2.1.0-SNAPSHOT</version.felix.framework>
+    <version.felix.framework>3.0.1</version.felix.framework>
     <version.jboss.osgi.deployment>1.0.2</version.jboss.osgi.deployment>
-    <version.jboss.osgi.spi>1.0.7-SNAPSHOT</version.jboss.osgi.spi>
+    <version.jboss.osgi.spi>1.0.7</version.jboss.osgi.spi>
     <version.osgi>4.2.0</version.osgi>
   </properties>
 
