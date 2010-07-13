@@ -21,18 +21,16 @@
  */
 package org.jboss.test.osgi.felix;
 
-//$Id$
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import org.jboss.osgi.deployment.deployer.DeployerService;
 import org.jboss.osgi.spi.framework.OSGiBootstrap;
 import org.jboss.osgi.spi.framework.OSGiBootstrapProvider;
 import org.junit.Test;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.osgi.framework.launch.Framework;
+import org.osgi.service.packageadmin.PackageAdmin;
 
 /**
  * Test OSGi System bundle access
@@ -55,8 +53,8 @@ public class OSGiBootstrapTestCase
       try
       {
          BundleContext context = framework.getBundleContext();
-         ServiceReference sref = context.getServiceReference(DeployerService.class.getName());
-         assertNotNull("DeployerService not null", sref);
+         ServiceReference sref = context.getServiceReference(PackageAdmin.class.getName());
+         assertNotNull("PackageAdmin not null", sref);
       }
       finally
       {

@@ -21,15 +21,11 @@
  */
 package org.jboss.osgi.felix;
 
-//$Id$
-
 import java.util.Map;
 
 import org.jboss.logging.Logger;
-import org.jboss.osgi.deployment.DeploymentServicesActivator;
 import org.jboss.osgi.spi.framework.PropertiesBootstrapProvider;
 import org.jboss.osgi.spi.util.ServiceLoader;
-import org.osgi.framework.BundleContext;
 import org.osgi.framework.launch.Framework;
 import org.osgi.framework.launch.FrameworkFactory;
 
@@ -43,8 +39,6 @@ public class FelixBootstrapProvider extends PropertiesBootstrapProvider
 {
    // Provide logging
    private static final Logger log = Logger.getLogger(FelixBootstrapProvider.class);
-   
-   private DeploymentServicesActivator deploymentActivator;
    
    @Override
    protected Framework createFramework(Map<String, Object> properties)
@@ -65,19 +59,5 @@ public class FelixBootstrapProvider extends PropertiesBootstrapProvider
       FrameworkFactory factory = ServiceLoader.loadService(FrameworkFactory.class);
       Framework framework = factory.newFramework(properties);
       return framework;
-   }
-   
-   @Override
-   protected void registerSystemServices(BundleContext context)
-   {
-      deploymentActivator = new DeploymentServicesActivator();
-      deploymentActivator.start(context);
-   }
-
-   @Override
-   protected void unregisterSystemServices(BundleContext context)
-   {
-      if (deploymentActivator != null)
-         deploymentActivator.stop(context);
    }
 }
