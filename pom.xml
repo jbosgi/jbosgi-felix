@@ -26,7 +26,7 @@
   <parent>
     <groupId>org.jboss.osgi</groupId>
     <artifactId>jboss-osgi-parent</artifactId>
-    <version>1.0.10-SNAPSHOT</version>
+    <version>1.0.9</version>
   </parent>
 
   <!-- Subversion -->
@@ -38,8 +38,8 @@
 
   <properties>
     <version.felix.framework>3.0.4</version.felix.framework>
-    <version.jboss.osgi.deployment>1.0.8-SNAPSHOT</version.jboss.osgi.deployment>
-    <version.jboss.osgi.spi>1.0.17-SNAPSHOT</version.jboss.osgi.spi>
+    <version.jboss.osgi.deployment>1.0.8</version.jboss.osgi.deployment>
+    <version.jboss.osgi.spi>1.0.17</version.jboss.osgi.spi>
     <version.osgi>4.2.0</version.osgi>
   </properties>
 
