@@ -24,6 +24,7 @@ package org.jboss.osgi.felix;
 //$Id: FelixIntegration.java 84730 2009-02-25 12:57:23Z thomas.diesler@jboss.com $
 
 import org.jboss.logging.Logger;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.ServiceReference;
 
 /**
@@ -46,8 +47,10 @@ public class FelixLogger extends org.apache.felix.framework.Logger
    }
 
    @Override
-   protected void doLog(ServiceReference sref, int level, String msg, Throwable throwable)
+   protected void doLog(Bundle bundle, ServiceReference sref, int level, String msg, Throwable throwable)
    {
+      if (bundle != null)
+         msg = "[" + bundle.getSymbolicName() + "] " + msg;
       if (sref != null)
          msg = sref + ": " + msg;
 

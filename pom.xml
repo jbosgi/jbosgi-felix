@@ -20,13 +20,13 @@
   <artifactId>jboss-osgi-felix</artifactId>
   <packaging>jar</packaging>
 
-  <version>3.0.2-SNAPSHOT</version>
+  <version>3.0.5-SNAPSHOT</version>
 
   <!-- Parent -->
   <parent>
     <groupId>org.jboss.osgi</groupId>
     <artifactId>jboss-osgi-parent</artifactId>
-    <version>1.0.7-SNAPSHOT</version>
+    <version>1.0.10-SNAPSHOT</version>
   </parent>
 
   <!-- Subversion -->
@@ -37,9 +37,9 @@
   </scm>
 
   <properties>
-    <version.felix.framework>3.0.1</version.felix.framework>
-    <version.jboss.osgi.deployment>1.0.3-SNAPSHOT</version.jboss.osgi.deployment>
-    <version.jboss.osgi.spi>1.0.9-SNAPSHOT</version.jboss.osgi.spi>
+    <version.felix.framework>3.0.4</version.felix.framework>
+    <version.jboss.osgi.deployment>1.0.8-SNAPSHOT</version.jboss.osgi.deployment>
+    <version.jboss.osgi.spi>1.0.17-SNAPSHOT</version.jboss.osgi.spi>
     <version.osgi>4.2.0</version.osgi>
   </properties>
 
